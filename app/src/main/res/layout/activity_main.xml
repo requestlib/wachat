@@ -4,16 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/loginbackgd"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="hello world"
-        android:textSize="34sp"
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#05C162"
+        android:text="登录"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        tools:layout_marginLeft="40dp"
+        tools:layout_marginBottom="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_regist"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/white"
+        android:text="注册"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        tools:layout_marginRight="40dp"
+        tools:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
