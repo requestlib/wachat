@@ -3,10 +3,18 @@ package com.example.wachat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import utils.httpUtils;
 
 public class RegistActivity extends AppCompatActivity {
     private Button regist_confirm_button;
@@ -47,7 +55,28 @@ public class RegistActivity extends AppCompatActivity {
                 }
 
                 //把数据存入服务器数据库
-
+                Map<String, String> map = new HashMap<>();
+                map.put("phone_number", inputTextPhone);
+                map.put("nick", inputTextNick);
+                map.put("password", inputTextPassword);
+                JSONObject params = new JSONObject(map);
+                //调用http post
+                Thread trd = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            String result = httpUtils.httpPost("/regist", params, "utf-8");
+                            if(result.equals("regist success")){
+                                Looper.prepare();
+                                Toast.makeText(RegistActivity.this , "注册成功! ", Toast.LENGTH_SHORT).show();
+                                Looper.loop();
+                            }
+                        }catch(Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                trd.start();
             }
         });
     }
